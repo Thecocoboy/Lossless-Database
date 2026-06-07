@@ -2,47 +2,69 @@ document.addEventListener('DOMContentLoaded', () => {
     const TARGET_OWNER = 'EchoMusicApp';
     const TARGET_REPO = 'Echo-Music-Canvas';
     const GITHUB_API_URL = 'https://api.github.com';
+    const CANVAS_JSON_URL = 'https://raw.githubusercontent.com/EchoMusicApp/Echo-Music-Canvas/main/canvas.json';
 
     let gitHubAccessToken = localStorage.getItem('gh_access_token') || null;
     let gitHubUsername = null;
     let selectedFile = null;
     let fileIsValid = false;
+    let canvasSourceMode = 'upload'; 
+    let selectedExistingUrl = null;
+    let allCanvasItems = []; 
 
-    const loginSection = document.getElementById('login-section');
-    const formSection = document.getElementById('form-section');
+    const loginSection  = document.getElementById('login-section');
+    const formSection   = document.getElementById('form-section');
     const statusSection = document.getElementById('status-section');
-    
-    const loginBtn = document.getElementById('login-btn');
+    const loginLimitBanner  = document.getElementById('login-limit-banner');
+    const limitBarProgress  = document.getElementById('limit-bar-progress');
+    const limitStatusText   = document.getElementById('limit-status-text');
+
+    const loginBtn  = document.getElementById('login-btn');
     const logoutBtn = document.getElementById('logout-btn');
-    const userAvatar = document.getElementById('user-avatar');
-    const userNameEl = document.getElementById('user-name');
-    
-    const songInput = document.getElementById('song-input');
-    const artistInput = document.getElementById('artist-input');
-    const fileInput = document.getElementById('file-input');
-    const dropZone = document.getElementById('drop-zone');
+    const userAvatar  = document.getElementById('user-avatar');
+    const userNameEl  = document.getElementById('user-name');
+
+    const destDirRadios     = document.querySelectorAll('input[name="dest-dir"]');
+    const canvasSourceRadios = document.querySelectorAll('input[name="canvas-source"]');
+
+    const uploadPanel    = document.getElementById('upload-panel');
+    const fileInput      = document.getElementById('file-input');
+    const dropZone       = document.getElementById('drop-zone');
     const fileInfoBanner = document.getElementById('file-info-banner');
     const selectedFileName = document.getElementById('selected-file-name');
     const selectedFileSize = document.getElementById('selected-file-size');
-    const removeFileBtn = document.getElementById('remove-file-btn');
-    const submitBtn = document.getElementById('submit-canvas-btn');
+    const removeFileBtn  = document.getElementById('remove-file-btn');
     const validationVideo = document.getElementById('validation-video-element');
-    
-    const statusLoader = document.getElementById('status-loader');
-    const statusSuccessIcon = document.getElementById('status-success-icon');
-    const statusErrorIcon = document.getElementById('status-error-icon');
-    const statusTitle = document.getElementById('status-title');
-    const statusMessage = document.getElementById('status-message');
-    const prLinkContainer = document.getElementById('pr-link-container');
-    const prLink = document.getElementById('pr-link');
-    const statusActionBtn = document.getElementById('status-action-btn');
 
-    const checkFormat = document.getElementById('check-format');
-    const checkSize = document.getElementById('check-size');
+    const checkFormat   = document.getElementById('check-format');
+    const checkSize     = document.getElementById('check-size');
     const checkDuration = document.getElementById('check-duration');
-    const checkAspect = document.getElementById('check-aspect');
+    const checkAspect   = document.getElementById('check-aspect');
 
-    const hashParams = new URLSearchParams(window.location.hash.substring(1));
+    const existingPanel          = document.getElementById('existing-panel');
+    const existingSearch         = document.getElementById('existing-search');
+    const existingResults        = document.getElementById('existing-results');
+    const existingSelectedBanner = document.getElementById('existing-selected-banner');
+    const existingSelectedTitle  = document.getElementById('existing-selected-title');
+    const existingSelectedUrlEl  = document.getElementById('existing-selected-url');
+    const clearExistingBtn       = document.getElementById('clear-existing-btn');
+
+    const songEntriesList = document.getElementById('song-entries-list');
+    const addSongBtn      = document.getElementById('add-song-btn');
+    const songCountBadge  = document.getElementById('song-count-badge');
+
+    const submitBtn = document.getElementById('submit-canvas-btn');
+
+    const statusLoader      = document.getElementById('status-loader');
+    const statusSuccessIcon = document.getElementById('status-success-icon');
+    const statusErrorIcon   = document.getElementById('status-error-icon');
+    const statusTitle       = document.getElementById('status-title');
+    const statusMessage     = document.getElementById('status-message');
+    const prLinkContainer   = document.getElementById('pr-link-container');
+    const prLink            = document.getElementById('pr-link');
+    const statusActionBtn   = document.getElementById('status-action-btn');
+
+    const hashParams   = new URLSearchParams(window.location.hash.substring(1));
     const tokenFromHash = hashParams.get('access_token');
     if (tokenFromHash) {
         gitHubAccessToken = tokenFromHash;
@@ -67,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     logoutBtn.addEventListener('click', () => {
         localStorage.removeItem('gh_access_token');
         gitHubAccessToken = null;
-        gitHubUsername = null;
+        gitHubUsername    = null;
         showLoginView();
     });
 
@@ -81,19 +103,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            if (!response.ok) {
-                throw new Error('OAuth Token expired or invalid.');
-            }
+            if (!response.ok) throw new Error('OAuth Token expired or invalid.');
 
             const userData = await response.json();
             gitHubUsername = userData.login;
-            
-            userAvatar.src = userData.avatar_url;
+
+            userAvatar.src     = userData.avatar_url;
             userNameEl.textContent = userData.login;
-            
-            loginSection.style.display = 'none';
+
+            loginSection.style.display  = 'none';
             statusSection.style.display = 'none';
-            formSection.style.display = 'block';
+            formSection.style.display   = 'block';
+
+            await loadCanvasItems();
             resetUploadForm();
         } catch (error) {
             console.error('Session Init Error:', error);
@@ -103,93 +125,155 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function showLoginView() {
-        formSection.style.display = 'none';
+    async function showLoginView() {
+        formSection.style.display   = 'none';
         statusSection.style.display = 'none';
-        loginSection.style.display = 'block';
+        loginSection.style.display  = 'block';
+        await checkLoginLimitStatus();
+    }
+
+    async function checkLoginLimitStatus() {
+        try {
+            let statusUrl = '/api/auth/status';
+            if (window.location.protocol === 'file:') {
+                statusUrl = 'https://canvas.echomusic.fun/api/auth/status';
+            }
+            const res  = await fetch(statusUrl);
+            if (!res.ok) throw new Error();
+            const data = await res.json();
+            loginLimitBanner.style.display = 'block';
+            const percent = Math.min((data.count / data.limit) * 100, 100);
+            limitBarProgress.style.width = `${percent}%`;
+            if (data.limitReached) {
+                loginBtn.disabled = true;
+                limitStatusText.innerHTML = `<span class="limit-warning">Daily limit reached (${data.count}/${data.limit}).</span> Logins are paused until tomorrow to prevent automated spam and protect repository quotas.`;
+            } else {
+                loginBtn.disabled = false;
+                limitStatusText.innerHTML = `<center><strong>${data.count} / ${data.limit} daily logins used.</strong></center> <br> To ensure fair usage, prevent abuse, and maintain service availability within budget, login requests are limited to <strong>500 per day</strong>. If the daily limit is reached, further logins may be temporarily unavailable until the quota resets.`;
+            }
+        } catch (e) {
+            loginLimitBanner.style.display = 'none';
+        }
+    }
+
+    async function loadCanvasItems() {
+        try {
+            const res  = await fetch(CANVAS_JSON_URL);
+            if (!res.ok) return;
+            const data = await res.json();
+            if (data.items && Array.isArray(data.items)) {
+                const seen = new Set();
+                allCanvasItems = data.items.filter(item => {
+                    if (seen.has(item.url)) return false;
+                    seen.add(item.url);
+                    return true;
+                });
+            }
+        } catch (e) {
+            console.warn('Could not load canvas.json for search:', e);
+        }
     }
 
     function resetUploadForm() {
-        songInput.value = '';
-        artistInput.value = '';
-        selectedFile = null;
-        fileIsValid = false;
-        
+        document.getElementById('source-upload').checked = true;
+        canvasSourceMode = 'upload';
+        uploadPanel.style.display   = 'block';
+        existingPanel.style.display = 'none';
+
+        selectedFile  = null;
+        fileIsValid   = false;
         fileInfoBanner.style.display = 'none';
-        dropZone.style.display = 'flex';
-        fileInput.value = '';
-        
+        dropZone.style.display       = 'flex';
+        fileInput.value              = '';
         resetChecklist();
+
+        selectedExistingUrl = null;
+        existingSearch.value = '';
+        existingResults.style.display        = 'none';
+        existingResults.innerHTML            = '';
+        existingSelectedBanner.style.display = 'none';
+
+        document.getElementById('type-song').checked = true;
+
+        songEntriesList.innerHTML = '';
+        addSongEntry();
+
         updateSubmitButtonState();
     }
 
-    [songInput, artistInput].forEach(input => {
-        input.addEventListener('input', () => {
+    destDirRadios.forEach(radio => {
+        radio.addEventListener('change', () => updateSubmitButtonState());
+    });
+
+    canvasSourceRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            canvasSourceMode = radio.value;
+            if (canvasSourceMode === 'upload') {
+                uploadPanel.style.display   = 'block';
+                existingPanel.style.display = 'none';
+            } else {
+                uploadPanel.style.display   = 'none';
+                existingPanel.style.display = 'block';
+            }
             updateSubmitButtonState();
         });
     });
 
     dropZone.addEventListener('click', () => fileInput.click());
-    
+
     ['dragenter', 'dragover'].forEach(eventName => {
         dropZone.addEventListener(eventName, (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+            e.preventDefault(); e.stopPropagation();
             dropZone.classList.add('drag-active');
         }, false);
     });
 
     ['dragleave', 'drop'].forEach(eventName => {
         dropZone.addEventListener(eventName, (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+            e.preventDefault(); e.stopPropagation();
             dropZone.classList.remove('drag-active');
         }, false);
     });
 
     dropZone.addEventListener('drop', (e) => {
-        const dt = e.dataTransfer;
-        const files = dt.files;
-        if (files.length > 0) {
-            handleSelectedFile(files[0]);
-        }
+        const files = e.dataTransfer.files;
+        if (files.length > 0) handleSelectedFile(files[0]);
     });
 
     fileInput.addEventListener('change', (e) => {
-        if (fileInput.files.length > 0) {
-            handleSelectedFile(fileInput.files[0]);
-        }
+        if (fileInput.files.length > 0) handleSelectedFile(fileInput.files[0]);
     });
 
     removeFileBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        resetUploadForm();
+        selectedFile  = null;
+        fileIsValid   = false;
+        fileInfoBanner.style.display = 'none';
+        dropZone.style.display       = 'flex';
+        fileInput.value              = '';
+        resetChecklist();
+        updateSubmitButtonState();
     });
 
     function handleSelectedFile(file) {
         selectedFile = file;
         selectedFileName.textContent = file.name;
         selectedFileSize.textContent = `${(file.size / (1024 * 1024)).toFixed(2)} MB`;
-        
-        dropZone.style.display = 'none';
+        dropZone.style.display       = 'none';
         fileInfoBanner.style.display = 'flex';
-        
         runFileValidation(file);
     }
 
     function resetChecklist() {
-        const checklist = [checkFormat, checkSize, checkDuration, checkAspect];
-        checklist.forEach(item => {
+        [checkFormat, checkSize, checkDuration, checkAspect].forEach(item => {
             item.className = 'validation-item';
-            const icon = item.querySelector('.check-status');
-            icon.className = 'fas fa-circle-notch fa-spin check-status';
+            item.querySelector('.check-status').className = 'fas fa-circle-notch fa-spin check-status';
         });
     }
 
     function setCheckState(element, state, customMsg = '') {
         const icon = element.querySelector('.check-status');
         element.className = 'validation-item';
-        
         if (state === 'success') {
             element.classList.add('valid');
             icon.className = 'fas fa-check-circle check-status';
@@ -199,371 +283,457 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             icon.className = 'fas fa-circle-notch fa-spin check-status';
         }
-        
-        if (customMsg) {
-            element.querySelector('span').innerHTML = customMsg;
-        }
+        if (customMsg) element.querySelector('span').innerHTML = customMsg;
     }
 
     async function runFileValidation(file) {
         resetChecklist();
+        fileIsValid = false;
         updateSubmitButtonState();
-        
-        let formatPass = false;
-        let sizePass = false;
-        let durationPass = false;
-        let aspectPass = false;
-        
+
+        let formatPass = false, sizePass = false, durationPass = false, aspectPass = false;
+
         const ext = file.name.split('.').pop().toLowerCase();
-        if (ext === 'mp4' || ext === 'm3u8') {
+        if (ext === 'mp4') {
             formatPass = true;
             setCheckState(checkFormat, 'success');
         } else {
-            setCheckState(checkFormat, 'error', `Invalid file extension (must be <code>.mp4</code> or <code>.m3u8</code>)`);
+            setCheckState(checkFormat, 'error', `Invalid file extension — only <code>.mp4</code> is accepted`);
         }
 
         const sizeMB = file.size / (1024 * 1024);
         if (sizeMB <= 5.0 && file.size > 0) {
             sizePass = true;
-            setCheckState(checkSize, 'success', `File size is ${sizeMB.toFixed(2)} MB (<= 5 MB limit)`);
+            setCheckState(checkSize, 'success', `File size is ${sizeMB.toFixed(2)} MB (&le; 5 MB limit)`);
         } else {
             setCheckState(checkSize, 'error', `File size is ${sizeMB.toFixed(2)} MB. Must be under <strong>5 MB</strong>`);
         }
 
-        if (ext === 'm3u8') {
-            setCheckState(checkDuration, 'success', `M3U8 checklist bypassed: Duration verified via playlist`);
-            setCheckState(checkAspect, 'success', `M3U8 checklist bypassed: Aspect ratio verified via playlist`);
-            durationPass = true;
-            aspectPass = true;
+        const objectUrl = URL.createObjectURL(file);
+        validationVideo.src = objectUrl;
+
+        validationVideo.onloadedmetadata = () => {
+            const duration = validationVideo.duration;
+            const width    = validationVideo.videoWidth;
+            const height   = validationVideo.videoHeight;
+            const aspect   = width / height;
+
+            URL.revokeObjectURL(objectUrl);
+
+            if (duration >= 3.0 && duration <= 30.1) {
+                durationPass = true;
+                setCheckState(checkDuration, 'success', `Duration is ${duration.toFixed(1)} seconds (3–30s limit)`);
+            } else {
+                setCheckState(checkDuration, 'error', `Duration is ${duration.toFixed(1)}s. Must be between <strong>3 and 30 seconds</strong>`);
+            }
+
+            if (width < height && aspect <= 0.61) {
+                aspectPass = true;
+                setCheckState(checkAspect, 'success', `Vertical visualizer (${width}×${height}, ~9:16)`);
+            } else {
+                setCheckState(checkAspect, 'error', `Ratio is landscape/square (${width}×${height}). Must be vertical (<strong>9:16</strong>)`);
+            }
+
             fileIsValid = formatPass && sizePass && durationPass && aspectPass;
             updateSubmitButtonState();
-        } else {
-            const objectUrl = URL.createObjectURL(file);
-            validationVideo.src = objectUrl;
-            
-            validationVideo.onloadedmetadata = () => {
-                const duration = validationVideo.duration;
-                const width = validationVideo.videoWidth;
-                const height = validationVideo.videoHeight;
-                const aspect = width / height;
+        };
 
-                URL.revokeObjectURL(objectUrl);
+        validationVideo.onerror = () => {
+            URL.revokeObjectURL(objectUrl);
+            setCheckState(checkDuration, 'error', 'Failed to load video metadata. The file might be corrupted.');
+            setCheckState(checkAspect, 'error', 'Could not read video dimensions.');
+            fileIsValid = false;
+            updateSubmitButtonState();
+        };
+    }
 
-                if (duration >= 3.0 && duration <= 30.1) {
-                    durationPass = true;
-                    setCheckState(checkDuration, 'success', `Duration is ${duration.toFixed(1)} seconds (3-30s limit)`);
-                } else {
-                    setCheckState(checkDuration, 'error', `Duration is ${duration.toFixed(1)}s. Must be between <strong>3 and 30 seconds</strong>`);
-                }
+    let searchDebounce = null;
+    existingSearch.addEventListener('input', () => {
+        clearTimeout(searchDebounce);
+        searchDebounce = setTimeout(runExistingSearch, 220);
+    });
 
-                if (width < height && aspect <= 0.61) {
-                    aspectPass = true;
-                    setCheckState(checkAspect, 'success', `Vertical visualizer (${width}x${height}, aspect ratio: ~9:16)`);
-                } else {
-                    setCheckState(checkAspect, 'error', `Aspect ratio is landscape/square (${width}x${height}). Must be vertical (<strong>9:16</strong>)`);
-                }
+    function runExistingSearch() {
+        const q = existingSearch.value.trim().toLowerCase();
+        if (!q) {
+            existingResults.style.display = 'none';
+            existingResults.innerHTML     = '';
+            return;
+        }
+        const matches = allCanvasItems.filter(item =>
+            item.song.toLowerCase().includes(q)   ||
+            item.artist.toLowerCase().includes(q) ||
+            item.url.toLowerCase().includes(q)
+        ).slice(0, 12);
 
-                fileIsValid = formatPass && sizePass && durationPass && aspectPass;
-                updateSubmitButtonState();
-            };
+        if (!matches.length) {
+            existingResults.innerHTML     = '<p class="existing-no-results">No canvases found matching your query.</p>';
+            existingResults.style.display = 'block';
+            return;
+        }
 
-            validationVideo.onerror = () => {
-                URL.revokeObjectURL(objectUrl);
-                setCheckState(checkDuration, 'error', 'Failed to load video metadata. The file might be corrupted.');
-                setCheckState(checkAspect, 'error', 'Could not read video dimensions.');
-                fileIsValid = false;
-                updateSubmitButtonState();
-            };
+        existingResults.innerHTML = matches.map((item, idx) => `
+            <button type="button" class="existing-result-item" data-url="${escapeAttr(item.url)}" data-label="${escapeAttr(item.song + ' — ' + item.artist)}">
+                <span class="existing-result-label">
+                    <span class="existing-result-song">${escapeHtml(item.song)}</span>
+                    <span class="existing-result-artist">${escapeHtml(item.artist)}</span>
+                </span>
+                <span class="existing-result-url">${escapeHtml(shortenUrl(item.url))}</span>
+            </button>
+        `).join('');
+        existingResults.style.display = 'block';
+
+        existingResults.querySelectorAll('.existing-result-item').forEach(btn => {
+            btn.addEventListener('click', () => {
+                selectExistingCanvas(btn.dataset.url, btn.dataset.label);
+            });
+        });
+    }
+
+    function selectExistingCanvas(url, label) {
+        selectedExistingUrl = url;
+        existingSelectedTitle.textContent  = label;
+        existingSelectedUrlEl.textContent  = shortenUrl(url);
+        existingSelectedBanner.style.display = 'flex';
+        existingResults.style.display = 'none';
+        existingSearch.value          = '';
+        updateSubmitButtonState();
+    }
+
+    clearExistingBtn.addEventListener('click', () => {
+        selectedExistingUrl = null;
+        existingSelectedBanner.style.display = 'none';
+        existingSearch.value = '';
+        updateSubmitButtonState();
+    });
+
+    function shortenUrl(url) {
+        try {
+            const u = new URL(url);
+            return u.hostname + u.pathname;
+        } catch {
+            return url;
         }
     }
 
+    let songEntryIdCounter = 0;
+
+    function addSongEntry(songVal = '', artistVal = '') {
+        const id = ++songEntryIdCounter;
+        const row = document.createElement('div');
+        row.className   = 'song-entry-row';
+        row.dataset.id  = id;
+        row.innerHTML = `
+            <div class="song-entry-fields">
+                <input type="text"
+                       class="song-entry-song"
+                       placeholder="Song title (e.g. Lost in Yesterday)"
+                       autocomplete="off"
+                       maxlength="120"
+                       value="${escapeAttr(songVal)}">
+                <input type="text"
+                       class="song-entry-artist"
+                       placeholder="Artist name (e.g. Tame Impala)"
+                       autocomplete="off"
+                       maxlength="120"
+                       value="${escapeAttr(artistVal)}">
+            </div>
+            <button type="button" class="btn-remove-song-entry" title="Remove this entry">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+        `;
+
+        row.querySelector('.btn-remove-song-entry').addEventListener('click', () => {
+            row.remove();
+            updateSongCountBadge();
+            updateSubmitButtonState();
+        });
+
+        row.querySelectorAll('input[type="text"]').forEach(inp => {
+            inp.addEventListener('input', () => {
+                updateSubmitButtonState();
+            });
+        });
+
+        songEntriesList.appendChild(row);
+        updateSongCountBadge();
+        updateSubmitButtonState();
+    }
+
+    addSongBtn.addEventListener('click', () => addSongEntry());
+
+    function getSongEntries() {
+        const rows = songEntriesList.querySelectorAll('.song-entry-row');
+        return Array.from(rows).map(row => ({
+            song:   row.querySelector('.song-entry-song').value.trim(),
+            artist: row.querySelector('.song-entry-artist').value.trim()
+        }));
+    }
+
+    function updateSongCountBadge() {
+        const count = songEntriesList.querySelectorAll('.song-entry-row').length;
+        songCountBadge.textContent = count === 1 ? '1 song' : `${count} songs`;
+    }
+
     function updateSubmitButtonState() {
-        const hasSong = songInput.value.trim().length > 0;
-        const hasArtist = artistInput.value.trim().length > 0;
-        
-        submitBtn.disabled = !(hasSong && hasArtist && selectedFile && fileIsValid);
+        const entries    = getSongEntries();
+        const validEntries = entries.filter(e =>
+            e.song.length > 0 && e.artist.length > 0 &&
+            !/[<>]/.test(e.song) && !/[<>]/.test(e.artist)
+        );
+        const hasSongs = validEntries.length > 0 && validEntries.length === entries.length;
+
+        let canvasReady = false;
+        if (canvasSourceMode === 'upload') {
+            canvasReady = !!(selectedFile && fileIsValid);
+        } else {
+            canvasReady = !!selectedExistingUrl;
+        }
+
+        submitBtn.disabled = !(hasSongs && canvasReady);
     }
 
     submitBtn.addEventListener('click', async () => {
         if (submitBtn.disabled) return;
-        
-        const songName = songInput.value.trim();
-        const artistName = artistInput.value.trim();
-        const destDir = document.querySelector('input[name="dest-dir"]:checked').value;
-        const ext = selectedFile.name.split('.').pop().toLowerCase();
 
-        if (/<[^>]*>/g.test(songName) || /<[^>]*>/g.test(artistName)) {
-            alert('HTML or Script tags are not allowed in metadata inputs.');
-            return;
+        const entries  = getSongEntries();
+        const destDir  = document.querySelector('input[name="dest-dir"]:checked').value;
+
+        for (const entry of entries) {
+            if (/[<>]/g.test(entry.song) || /[<>]/g.test(entry.artist)) {
+                alert('HTML tags are not allowed in song or artist fields.');
+                return;
+            }
         }
 
         showLoadingView();
-        
+
         try {
-            updateLoadingMessage('Querying Repository', 'Finding the next sequential number in active visualizers...');
-            
-            const [songFilesResponse, albumFilesResponse] = await Promise.all([
-                fetch(`${GITHUB_API_URL}/repos/${TARGET_OWNER}/${TARGET_REPO}/contents/Song`, {
-                    headers: { 'Authorization': `Bearer ${gitHubAccessToken}` }
-                }),
-                fetch(`${GITHUB_API_URL}/repos/${TARGET_OWNER}/${TARGET_REPO}/contents/Album`, {
-                    headers: { 'Authorization': `Bearer ${gitHubAccessToken}` }
-                })
-            ]);
-
-            if (!songFilesResponse.ok || !albumFilesResponse.ok) {
-                throw new Error('Failed to retrieve contents of Song/ or Album/ directories from upstream.');
+            if (canvasSourceMode === 'upload') {
+                await submitWithNewUpload(entries, destDir);
+            } else {
+                await submitWithExistingCanvas(entries, destDir);
             }
-
-            const songFiles = await songFilesResponse.json();
-            const albumFiles = await albumFilesResponse.json();
-            const allFiles = [...songFiles, ...albumFiles];
-
-            const numbers = [];
-            allFiles.forEach(file => {
-                const match = file.name.match(/^(\d+)\.(mp4|m3u8)$/i);
-                if (match) {
-                    numbers.push(parseInt(match[1], 10));
-                }
-            });
-
-            const nextNumber = numbers.length > 0 ? Math.max(...numbers) + 1 : 1;
-            const newFilename = `${nextNumber}.${ext}`;
-            const targetPath = `${destDir}/${newFilename}`;
-
-            updateLoadingMessage('Configuring Repository', `Forking ${TARGET_OWNER}/${TARGET_REPO} to your profile...`);
-
-            const forkResponse = await fetch(`${GITHUB_API_URL}/repos/${TARGET_OWNER}/${TARGET_REPO}/forks`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${gitHubAccessToken}`,
-                    'Accept': 'application/vnd.github.v3+json'
-                }
-            });
-
-            if (!forkResponse.ok) {
-                throw new Error('Could not fork the upstream repository to your GitHub profile.');
-            }
-
-            const forkData = await forkResponse.json();
-            const forkOwner = forkData.owner.login;
-
-            await sleep(3000);
-
-            updateLoadingMessage('Syncing Branches', 'Ensuring your fork is fully up-to-date with upstream main...');
-            
-            const syncResponse = await fetch(`${GITHUB_API_URL}/repos/${forkOwner}/${TARGET_REPO}/merge-upstream`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${gitHubAccessToken}`,
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/vnd.github.v3+json'
-                },
-                body: JSON.stringify({ branch: 'main' })
-            });
-
-            if (!syncResponse.ok && syncResponse.status !== 409 && syncResponse.status !== 422) {
-                console.warn('Warning syncing fork upstream:', await syncResponse.text());
-            }
-
-            updateLoadingMessage('Creating Work Branch', 'Creating a separate branch for your canvas...');
-            
-            const refResponse = await fetch(`${GITHUB_API_URL}/repos/${forkOwner}/${TARGET_REPO}/git/ref/heads/main`, {
-                headers: {
-                    'Authorization': `Bearer ${gitHubAccessToken}`,
-                    'Accept': 'application/vnd.github.v3+json'
-                }
-            });
-
-            if (!refResponse.ok) {
-                throw new Error('Failed to get the latest commit SHA of your main branch.');
-            }
-
-            const refData = await refResponse.json();
-            const mainSha = refData.object.sha;
-            const branchName = `canvas-submission-${nextNumber}`;
-
-            const createBranchResponse = await fetch(`${GITHUB_API_URL}/repos/${forkOwner}/${TARGET_REPO}/git/refs`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${gitHubAccessToken}`,
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/vnd.github.v3+json'
-                },
-                body: JSON.stringify({
-                    ref: `refs/heads/${branchName}`,
-                    sha: mainSha
-                })
-            });
-
-            if (!createBranchResponse.ok) {
-                const errText = await createBranchResponse.text();
-                if (!errText.includes('already exists')) {
-                    throw new Error('Failed to create git branch on fork: ' + errText);
-                }
-            }
-
-            updateLoadingMessage('Uploading Visualizer', `Uploading video file: ${newFilename} (~${(selectedFile.size / (1024 * 1024)).toFixed(2)} MB)...`);
-            
-            const base64Video = await readFileAsBase64(selectedFile);
-            
-            const uploadVideoResponse = await fetch(`${GITHUB_API_URL}/repos/${forkOwner}/${TARGET_REPO}/contents/${targetPath}`, {
-                method: 'PUT',
-                headers: {
-                    'Authorization': `Bearer ${gitHubAccessToken}`,
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/vnd.github.v3+json'
-                },
-                body: JSON.stringify({
-                    message: `feat: upload canvas video for ${songName}`,
-                    content: base64Video,
-                    branch: branchName
-                })
-            });
-
-            if (!uploadVideoResponse.ok) {
-                throw new Error('Failed to upload the visualizer file to your fork.');
-            }
-
-            updateLoadingMessage('Updating Database', 'Appending the new entry to canvas.json...');
-            
-            const canvasUrl = `${GITHUB_API_URL}/repos/${forkOwner}/${TARGET_REPO}/contents/canvas.json?ref=${branchName}`;
-            const canvasResponse = await fetch(canvasUrl, {
-                headers: {
-                    'Authorization': `Bearer ${gitHubAccessToken}`,
-                    'Accept': 'application/vnd.github.v3+json'
-                }
-            });
-
-            if (!canvasResponse.ok) {
-                throw new Error('Failed to download current canvas.json from your fork.');
-            }
-
-            const canvasData = await canvasResponse.json();
-            const canvasSha = canvasData.sha;
-            
-            const canvasContent = decodeBase64Utf8(canvasData.content);
-            const canvasObj = JSON.parse(canvasContent);
-            
-            if (!canvasObj.items || !Array.isArray(canvasObj.items)) {
-                throw new Error('Formatted items database is missing or corrupt in canvas.json.');
-            }
-
-            const newEntry = {
-                song: songName,
-                artist: artistName,
-                url: `https://canvas.echomusic.fun/${targetPath}`
-            };
-            canvasObj.items.push(newEntry);
-            
-            const updatedCanvasContent = encodeBase64Utf8(JSON.stringify(canvasObj, null, 2) + '\n');
-
-            const updateCanvasResponse = await fetch(`${GITHUB_API_URL}/repos/${forkOwner}/${TARGET_REPO}/contents/canvas.json`, {
-                method: 'PUT',
-                headers: {
-                    'Authorization': `Bearer ${gitHubAccessToken}`,
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/vnd.github.v3+json'
-                },
-                body: JSON.stringify({
-                    message: `feat: update canvas.json for ${songName}`,
-                    content: updatedCanvasContent,
-                    sha: canvasSha,
-                    branch: branchName
-                })
-            });
-
-            if (!updateCanvasResponse.ok) {
-                throw new Error('Failed to write updated canvas.json database to your fork.');
-            }
-
-            updateLoadingMessage('Submitting Contribution', 'Submitting Pull Request to original repository...');
-            
-            const prResponse = await fetch(`${GITHUB_API_URL}/repos/${TARGET_OWNER}/${TARGET_REPO}/pulls`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${gitHubAccessToken}`,
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/vnd.github.v3+json'
-                },
-                body: JSON.stringify({
-                    title: `feat: added canvas for ${songName} - ${artistName}`,
-                    head: `${forkOwner}:${branchName}`,
-                    base: 'main',
-                    body: `This Pull Request was submitted automatically via the Echo Music Canvas portal.\n\n### 🎵 Submission Metadata\n* **Song Title:** ${songName}\n* **Artist/Singer:** ${artistName}\n* **Category:** ${destDir}\n* **Assigned Serial File:** \`${targetPath}\`\n\n*Auto-merge will run validation checks on this contribution.*`
-                })
-            });
-
-            if (!prResponse.ok) {
-                const errorData = await prResponse.json();
-                throw new Error(errorData.message || 'Failed to submit the Pull Request upstream.');
-            }
-
-            const prData = await prResponse.json();
-            
-            showSuccessState(prData.html_url);
-
         } catch (error) {
             console.error('Submission error:', error);
-            showErrorState(error.message || 'An unknown network error occurred during uploading.');
+            showErrorState(error.message || 'An unknown network error occurred during submission.');
         }
     });
 
+    async function submitWithNewUpload(entries, destDir) {
+        const primaryEntry = entries[0]; 
+        const sanitizedOriginalName = selectedFile.name.toLowerCase().replace(/[^a-z0-9._-]/g, '_');
+        const cleanName    = sanitizedOriginalName.split('.')[0];
+        const newFilename  = `${gitHubUsername.toLowerCase()}-${sanitizedOriginalName}`;
+        const targetPath   = `${destDir}/${newFilename}`;
+        const canvasUrl    = `https://canvas.echomusic.fun/${targetPath}`;
+        const branchName   = `canvas-${gitHubUsername.toLowerCase()}-${cleanName}`;
+
+        const forkOwner = await forkAndSync(branchName, primaryEntry.song);
+
+        updateLoadingMessage('Uploading Visualizer', `Uploading video: ${newFilename}…`);
+        const base64Video = await readFileAsBase64(selectedFile);
+
+        const uploadRes = await fetch(`${GITHUB_API_URL}/repos/${forkOwner}/${TARGET_REPO}/contents/${targetPath}`, {
+            method: 'PUT',
+            headers: buildHeaders(),
+            body: JSON.stringify({
+                message: `feat: upload canvas video for ${primaryEntry.song}`,
+                content: base64Video,
+                branch: branchName
+            })
+        });
+        if (!uploadRes.ok) throw new Error('Failed to upload the visualizer file to your fork.');
+
+        await updateCanvasJson(forkOwner, branchName, entries, canvasUrl);
+        const prUrl = await openPullRequest(forkOwner, branchName, entries, destDir, targetPath);
+        showSuccessState(prUrl);
+    }
+
+    async function submitWithExistingCanvas(entries, destDir) {
+        const primaryEntry = entries[0];
+        const slug        = primaryEntry.song.toLowerCase().replace(/[^a-z0-9]/g, '-').slice(0, 30);
+        const branchName  = `canvas-${gitHubUsername.toLowerCase()}-${slug}-link`;
+
+        const forkOwner = await forkAndSync(branchName, primaryEntry.song);
+
+        await updateCanvasJson(forkOwner, branchName, entries, selectedExistingUrl);
+        const prUrl = await openPullRequest(forkOwner, branchName, entries, destDir, selectedExistingUrl);
+        showSuccessState(prUrl);
+    }
+
+    async function forkAndSync(branchName, songLabel) {
+        updateLoadingMessage('Configuring Repository', `Forking ${TARGET_OWNER}/${TARGET_REPO} to your profile…`);
+
+        const forkRes = await fetch(`${GITHUB_API_URL}/repos/${TARGET_OWNER}/${TARGET_REPO}/forks`, {
+            method: 'POST',
+            headers: buildHeaders()
+        });
+        if (!forkRes.ok) throw new Error('Could not fork the upstream repository to your GitHub profile.');
+
+        const forkData  = await forkRes.json();
+        const forkOwner = forkData.owner.login;
+
+        await sleep(3000);
+
+        updateLoadingMessage('Syncing Branches', 'Ensuring your fork is up-to-date with upstream main…');
+        const syncRes = await fetch(`${GITHUB_API_URL}/repos/${forkOwner}/${TARGET_REPO}/merge-upstream`, {
+            method: 'POST',
+            headers: { ...buildHeaders(), 'Content-Type': 'application/json' },
+            body: JSON.stringify({ branch: 'main' })
+        });
+        if (!syncRes.ok && syncRes.status !== 409 && syncRes.status !== 422) {
+            console.warn('Warning syncing fork:', await syncRes.text());
+        }
+
+        updateLoadingMessage('Creating Work Branch', 'Creating a separate branch for your canvas…');
+        const refRes = await fetch(`${GITHUB_API_URL}/repos/${forkOwner}/${TARGET_REPO}/git/ref/heads/main`, {
+            headers: buildHeaders()
+        });
+        if (!refRes.ok) throw new Error('Failed to get the latest commit SHA of main.');
+
+        const refData  = await refRes.json();
+        const mainSha  = refData.object.sha;
+
+        const branchRes = await fetch(`${GITHUB_API_URL}/repos/${forkOwner}/${TARGET_REPO}/git/refs`, {
+            method: 'POST',
+            headers: { ...buildHeaders(), 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ref: `refs/heads/${branchName}`, sha: mainSha })
+        });
+        if (!branchRes.ok) {
+            const txt = await branchRes.text();
+            if (!txt.includes('already exists')) throw new Error('Failed to create branch: ' + txt);
+        }
+
+        return forkOwner;
+    }
+
+    async function updateCanvasJson(forkOwner, branchName, entries, canvasVideoUrl) {
+        updateLoadingMessage('Updating Database', `Adding ${entries.length} song entr${entries.length === 1 ? 'y' : 'ies'} to canvas.json…`);
+
+        const canvasApiUrl = `${GITHUB_API_URL}/repos/${forkOwner}/${TARGET_REPO}/contents/canvas.json?ref=${branchName}`;
+        const canvasRes = await fetch(canvasApiUrl, { headers: buildHeaders() });
+        if (!canvasRes.ok) throw new Error('Failed to download canvas.json from your fork.');
+
+        const canvasData    = await canvasRes.json();
+        const canvasSha     = canvasData.sha;
+        const canvasContent = decodeBase64Utf8(canvasData.content);
+        const canvasObj     = JSON.parse(canvasContent);
+
+        if (!canvasObj.items || !Array.isArray(canvasObj.items)) {
+            throw new Error('canvas.json items database is missing or corrupt.');
+        }
+
+        const newEntries = entries.map(entry => ({
+            song:   entry.song,
+            artist: entry.artist,
+            url:    canvasVideoUrl
+        }));
+        canvasObj.items.unshift(...newEntries);
+
+        const updatedContent = encodeBase64Utf8(JSON.stringify(canvasObj, null, 2) + '\n');
+
+        const updateRes = await fetch(`${GITHUB_API_URL}/repos/${forkOwner}/${TARGET_REPO}/contents/canvas.json`, {
+            method: 'PUT',
+            headers: { ...buildHeaders(), 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                message: `feat: update canvas.json — add ${entries.length} song(s)`,
+                content: updatedContent,
+                sha:     canvasSha,
+                branch:  branchName
+            })
+        });
+        if (!updateRes.ok) throw new Error('Failed to write updated canvas.json to your fork.');
+    }
+
+    async function openPullRequest(forkOwner, branchName, entries, destDir, canvasPath) {
+        updateLoadingMessage('Submitting Contribution', 'Opening Pull Request on the upstream repository…');
+
+        const isSingle = entries.length === 1;
+        const prTitle  = isSingle
+            ? `feat: add canvas for ${entries[0].song} — ${entries[0].artist}`
+            : `feat: add ${entries.length} songs to canvas — ${entries.map(e => e.song).slice(0, 3).join(', ')}${entries.length > 3 ? '…' : ''}`;
+
+        const songTable = entries.map(e =>
+            `| ${e.song} | ${e.artist} |`
+        ).join('\n');
+
+        const prBody = `This Pull Request was submitted automatically via the Echo Music Canvas portal.\n\n### 🎵 Submission Metadata\n* **Category:** ${destDir}\n* **Canvas URL / Path:** \`${canvasPath}\`\n* **Total Songs Linked:** ${entries.length}\n\n### 🎶 Song Entries\n| Song Title | Artist |\n|---|---|\n${songTable}\n\n*Validation checks will run automatically on this contribution.*`;
+
+        const prRes = await fetch(`${GITHUB_API_URL}/repos/${TARGET_OWNER}/${TARGET_REPO}/pulls`, {
+            method: 'POST',
+            headers: { ...buildHeaders(), 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                title: prTitle,
+                head:  `${forkOwner}:${branchName}`,
+                base:  'main',
+                body:  prBody
+            })
+        });
+        if (!prRes.ok) {
+            const errData = await prRes.json();
+            throw new Error(errData.message || 'Failed to submit the Pull Request upstream.');
+        }
+
+        const prData = await prRes.json();
+        return prData.html_url;
+    }
+
     function showLoadingState(title, message) {
-        formSection.style.display = 'none';
-        loginSection.style.display = 'none';
-        
+        formSection.style.display   = 'none';
+        loginSection.style.display  = 'none';
         statusSection.style.display = 'block';
-        statusLoader.style.display = 'block';
+        statusLoader.style.display  = 'block';
         statusSuccessIcon.style.display = 'none';
-        statusErrorIcon.style.display = 'none';
-        prLinkContainer.style.display = 'none';
-        statusActionBtn.style.display = 'none';
-        
-        statusTitle.textContent = title;
+        statusErrorIcon.style.display   = 'none';
+        prLinkContainer.style.display   = 'none';
+        statusActionBtn.style.display   = 'none';
+        statusTitle.textContent   = title;
         statusMessage.textContent = message;
     }
 
     function showLoadingView() {
-        showLoadingState('Submitting Canvas...', 'Initializing your contribution upload. Do not close this browser window.');
+        showLoadingState('Submitting Canvas…', 'Initializing your contribution. Do not close this browser window.');
     }
 
     function updateLoadingMessage(title, message) {
-        statusTitle.textContent = title;
+        statusTitle.textContent   = title;
         statusMessage.textContent = message;
     }
 
     function showSuccessState(prUrl) {
-        statusLoader.style.display = 'none';
+        statusLoader.style.display      = 'none';
         statusSuccessIcon.style.display = 'block';
-        
         statusTitle.textContent = 'Submission Sent!';
-        statusMessage.innerHTML = 'Thank you for your canvas submission! We have automatically created a Pull Request.<br><br>The continuous integration validation checks will run. If it passes all criteria, your visualizer will be **automatically merged** into the live repository.';
-        
+        statusMessage.innerHTML = 'Thank you for your canvas submission! We have automatically created a Pull Request.<br><br>The continuous integration validation checks will run. Once they pass, a maintainer will review and manually merge your contribution into the live repository.';
         prLink.href = prUrl;
         prLinkContainer.style.display = 'block';
-        
         statusActionBtn.textContent = 'Submit Another';
         statusActionBtn.style.display = 'inline-flex';
         statusActionBtn.onclick = () => {
             resetUploadForm();
             statusSection.style.display = 'none';
-            formSection.style.display = 'block';
+            formSection.style.display   = 'block';
         };
     }
 
     function showErrorState(errorMsg) {
-        statusLoader.style.display = 'none';
+        statusLoader.style.display    = 'none';
         statusErrorIcon.style.display = 'block';
-        
         statusTitle.textContent = 'Submission Failed';
         statusMessage.textContent = errorMsg;
-        
         statusActionBtn.textContent = 'Modify & Retry';
         statusActionBtn.style.display = 'inline-flex';
         statusActionBtn.onclick = () => {
             statusSection.style.display = 'none';
-            formSection.style.display = 'block';
+            formSection.style.display   = 'block';
+        };
+    }
+
+    function buildHeaders() {
+        return {
+            'Authorization': `Bearer ${gitHubAccessToken}`,
+            'Accept': 'application/vnd.github.v3+json'
         };
     }
 
@@ -575,11 +745,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
-            reader.onload = () => {
-                const base64Str = reader.result.split(',')[1];
-                resolve(base64Str);
-            };
-            reader.onerror = error => reject(error);
+            reader.onload  = () => resolve(reader.result.split(',')[1]);
+            reader.onerror = err => reject(err);
         });
     }
 
@@ -591,5 +758,17 @@ document.addEventListener('DOMContentLoaded', () => {
     function encodeBase64Utf8(str) {
         const binString = Array.from(new TextEncoder().encode(str), byte => String.fromCharCode(byte)).join('');
         return btoa(binString);
+    }
+
+    function escapeHtml(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    function escapeAttr(str) {
+        return String(str).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     }
 });
