@@ -16,6 +16,16 @@
       "url": "https://canvas.echomusic.app/Song/17.mp4"
     },
     {
+      "song": "A Lonely Night",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/16.mp4"
+    },
+    {
+      "song": "A Tale By Quincy",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/9.m3u8"
+    },
+    {
       "song": "Aaho Raja",
       "artist": "Pawan Singh",
       "url": "https://canvas.echomusic.fun/Song/mandleshpratapsingh305-prog-27710.mp4"
@@ -46,14 +56,59 @@
       "url": "https://canvas.echomusic.app/Song/18.mp4"
     },
     {
+      "song": "After Hours",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/20.m3u8"
+    },
+    {
+      "song": "After Math",
+      "artist": "Kyle Dixon",
+      "url": "https://canvas.echomusic.fun/Album/katx-dev-1000265947.mp4"
+    },
+    {
       "song": "Aga Naga",
       "artist": "A.R. Rahman",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000032624.mp4"
     },
     {
+      "song": "Alive",
+      "artist": "Khalid",
+      "url": "https://canvas.echomusic.app/Song/22.m3u8"
+    },
+    {
+      "song": "Alive",
+      "artist": "The Black Eyed Peas",
+      "url": "https://canvas.echomusic.app/Song/19.m3u8"
+    },
+    {
+      "song": "Alizeh",
+      "artist": "Pritam",
+      "url": "https://canvas.echomusic.app/Song/18.mp4"
+    },
+    {
+      "song": "All I Know (feat. Future)",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/16.mp4"
+    },
+    {
+      "song": "All My Friends Know",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/13.m3u8"
+    },
+    {
+      "song": "All The Way Live",
+      "artist": "Metro Boomin",
+      "url": "https://canvas.echomusic.app/Song/7.m3u8"
+    },
+    {
       "song": "Alone Again",
       "artist": "The Weeknd",
       "url": "https://canvas.echomusic.app/Song/20.m3u8"
+    },
+    {
+      "song": "Am I Dreaming",
+      "artist": "Metro Boomin",
+      "url": "https://canvas.echomusic.app/Song/7.m3u8"
     },
     {
       "song": "Annihilate",
@@ -81,6 +136,11 @@
       "url": "https://canvas.echomusic.fun/Album/trackbaba3-art-54880.mp4"
     },
     {
+      "song": "Attention",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/16.mp4"
+    },
+    {
       "song": "Aura 10/10",
       "artist": "Hiphop Tamizha",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000031636.mp4"
@@ -96,6 +156,11 @@
       "url": "https://canvas.echomusic.fun/Song/30.m3u8"
     },
     {
+      "song": "Bad Luck",
+      "artist": "Khalid",
+      "url": "https://canvas.echomusic.app/Song/22.m3u8"
+    },
+    {
       "song": "Bae",
       "artist": "Anirudh Ravichander",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000032629.mp4"
@@ -106,9 +171,24 @@
       "url": "https://canvas.echomusic.fun/Song/32.mp4"
     },
     {
+      "song": "Bairan - Duet Version",
+      "artist": "Simiran Kaur Dhadli, Banjaare",
+      "url": "https://canvas.echomusic.fun/Song/32.mp4"
+    },
+    {
       "song": "Beer Song (From \"Diesel\")",
       "artist": "Dhibu Ninan Thomas, Gana Guna & Rokesh",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000033400.mp4"
+    },
+    {
+      "song": "Best Friends",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/9.m3u8"
+    },
+    {
+      "song": "Better",
+      "artist": "Khalid",
+      "url": "https://canvas.echomusic.app/Song/22.m3u8"
     },
     {
       "song": "Bhagatt Aadmi",
@@ -121,9 +201,39 @@
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000033890.mp4"
     },
     {
+      "song": "Blinding Lights",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/20.m3u8"
+    },
+    {
+      "song": "Blood & Whiskey ",
+      "artist": "Lo Key",
+      "url": "https://canvas.echomusic.fun/Album/1.m3u8"
+    },
+    {
+      "song": "Blue",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/14.m3u8"
+    },
+    {
+      "song": "Bluffin'",
+      "artist": "Khalid",
+      "url": "https://canvas.echomusic.app/Song/22.m3u8"
+    },
+    {
       "song": "Boom Boom Pow",
       "artist": "The Black Eyed Peas",
       "url": "https://canvas.echomusic.app/Song/19.m3u8"
+    },
+    {
+      "song": "Borderline",
+      "artist": "Tame Impala",
+      "url": "https://canvas.echomusic.app/Song/10.m3u8"
+    },
+    {
+      "song": "Boy's a liar Pt. 2",
+      "artist": "PinkPantheress, Ice Spice",
+      "url": "https://canvas.echomusic.app/Song/14.m3u8"
     },
     {
       "song": "Boys and Girls",
@@ -131,9 +241,39 @@
       "url": "https://canvas.echomusic.fun/Album/katx-dev-1000265947.mp4"
     },
     {
+      "song": "Break It Off (Bonus)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/13.m3u8"
+    },
+    {
+      "song": "Breathe Deeper",
+      "artist": "Tame Impala",
+      "url": "https://canvas.echomusic.app/Song/10.m3u8"
+    },
+    {
+      "song": "Bulleya",
+      "artist": "Pritam",
+      "url": "https://canvas.echomusic.app/Song/18.mp4"
+    },
+    {
+      "song": "Bury me (feat. Kelela)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/14.m3u8"
+    },
+    {
       "song": "Bus Fight x Powerhouse x Disco",
       "artist": "Anirudh Ravichander, Rajinikanth, Aamirkhan & Arivu",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000033039.mp4"
+    },
+    {
+      "song": "Calling",
+      "artist": "Metro Boomin",
+      "url": "https://canvas.echomusic.app/Song/7.m3u8"
+    },
+    {
+      "song": "Capable of love",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/14.m3u8"
     },
     {
       "song": "Chaandni",
@@ -144,6 +284,11 @@
       "song": "Chambal K Dakku (feat. Ruba Khan)",
       "artist": "Masoom Sharma, Rahul Muana, Swara Verma",
       "url": "https://canvas.echomusic.fun/Song/mandleshpratapsingh305-prog-28357.mp4"
+    },
+    {
+      "song": "Channa Mereya",
+      "artist": "Pritam",
+      "url": "https://canvas.echomusic.app/Song/18.mp4"
     },
     {
       "song": "Chellamma",
@@ -176,6 +321,16 @@
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000031796.mp4"
     },
     {
+      "song": "Code Red",
+      "artist": "Kyle Dixon",
+      "url": "https://canvas.echomusic.fun/Album/katx-dev-1000265947.mp4"
+    },
+    {
+      "song": "Cutiepie",
+      "artist": "Pritam",
+      "url": "https://canvas.echomusic.app/Song/18.mp4"
+    },
+    {
       "song": "Dawn FM",
       "artist": "The Weeknd",
       "url": "https://canvas.echomusic.app/Song/9.m3u8"
@@ -201,6 +356,21 @@
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000031651.mp4"
     },
     {
+      "song": "Die For You",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/16.mp4"
+    },
+    {
+      "song": "Don't Break My Heart",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/9.m3u8"
+    },
+    {
+      "song": "Don't Pretend (feat. SAFE)",
+      "artist": "Khalid",
+      "url": "https://canvas.echomusic.app/Song/22.m3u8"
+    },
+    {
       "song": "Dracula",
       "artist": "Tame Impala",
       "url": "https://canvas.echomusic.app/Song/1.mp4"
@@ -214,6 +384,11 @@
       "song": "Edharkaga Marubadi",
       "artist": "Punya Selva",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000033223.mp4"
+    },
+    {
+      "song": "Electric City",
+      "artist": "The Black Eyed Peas",
+      "url": "https://canvas.echomusic.app/Song/19.m3u8"
     },
     {
       "song": "Enigma",
@@ -231,6 +406,41 @@
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000033057.mp4"
     },
     {
+      "song": "Escape From LA",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/20.m3u8"
+    },
+    {
+      "song": "Every Angel is Terrifying",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/9.m3u8"
+    },
+    {
+      "song": "Faith",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/20.m3u8"
+    },
+    {
+      "song": "False Alarm",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/16.mp4"
+    },
+    {
+      "song": "Feel complete",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/14.m3u8"
+    },
+    {
+      "song": "Feelings",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/14.m3u8"
+    },
+    {
+      "song": "Find The Source",
+      "artist": "Kyle Dixon",
+      "url": "https://canvas.echomusic.fun/Album/katx-dev-1000265947.mp4"
+    },
+    {
       "song": "Finding Her",
       "artist": "Bharath",
       "url": "https://canvas.echomusic.fun/Song/13-findingher.mp4"
@@ -241,7 +451,27 @@
       "url": "https://canvas.echomusic.app/Song/2.mp4"
     },
     {
+      "song": "Free Spirit",
+      "artist": "Khalid",
+      "url": "https://canvas.echomusic.app/Song/22.m3u8"
+    },
+    {
       "song": "Funk Sereno",
+      "artist": "Dysmane",
+      "url": "https://canvas.echomusic.fun/Album/2.m3u8"
+    },
+    {
+      "song": "Funk Sereno(Slowed)",
+      "artist": "Dysmane",
+      "url": "https://canvas.echomusic.fun/Album/2.m3u8"
+    },
+    {
+      "song": "Funk Sereno(Super Slowed)",
+      "artist": "Dysmane",
+      "url": "https://canvas.echomusic.fun/Album/2.m3u8"
+    },
+    {
+      "song": "Funk Sereno(sped Up)",
       "artist": "Dysmane",
       "url": "https://canvas.echomusic.fun/Album/2.m3u8"
     },
@@ -251,14 +481,34 @@
       "url": "https://canvas.echomusic.fun/Song/wrxich-lv_0_20260623130231.mp4"
     },
     {
+      "song": "Gasoline",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/9.m3u8"
+    },
+    {
       "song": "Gehra Hua (From \"Dhurandhar\")",
       "artist": "Shashwat Sachdev, Arijit Singh, Armaan Khan, and Irshad Kamil",
       "url": "https://canvas.echomusic.fun/Song/sumankar892-commits-1000232693.mp4"
     },
     {
+      "song": "Girl Like Me (feat. Kaytranada)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/15.m3u8"
+    },
+    {
       "song": "Girl Like Me (feat. Oklou)",
       "artist": "PinkPantheress",
       "url": "https://canvas.echomusic.app/Song/15.m3u8"
+    },
+    {
+      "song": "Givin' Up (Not The One)",
+      "artist": "Don Toliver",
+      "url": "https://canvas.echomusic.app/Song/7.m3u8"
+    },
+    {
+      "song": "Glimmer",
+      "artist": "Tame Impala",
+      "url": "https://canvas.echomusic.app/Song/10.m3u8"
     },
     {
       "song": "God Mode",
@@ -276,14 +526,44 @@
       "url": "https://canvas.echomusic.app/Song/8.mp4"
     },
     {
+      "song": "Hardest To Love",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/20.m3u8"
+    },
+    {
+      "song": "Harvey",
+      "artist": "Her's",
+      "url": "https://canvas.echomusic.app/Song/4.mp4"
+    },
+    {
       "song": "Hayyoda",
       "artist": "Anirudh Ravichander",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000032316.mp4"
     },
     {
+      "song": "Heartless",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/20.m3u8"
+    },
+    {
+      "song": "Heather's",
+      "artist": "Kyle Dixon",
+      "url": "https://canvas.echomusic.fun/Album/katx-dev-1000265947.mp4"
+    },
+    {
+      "song": "Heaven",
+      "artist": "Khalid",
+      "url": "https://canvas.echomusic.app/Song/22.m3u8"
+    },
+    {
       "song": "Hellallallo",
       "artist": "A. R. Rahman",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000031648.mp4"
+    },
+    {
+      "song": "Here We Go… Again",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/9.m3u8"
     },
     {
       "song": "Hey Minnale",
@@ -296,9 +576,64 @@
       "url": "https://canvas.echomusic.fun/Song/sumankar892-commits-1000232069.mp4"
     },
     {
+      "song": "Hey shoka",
+      "artist": "Somlata Acharyya Chowdhury,Arindam Chatterjee",
+      "url": "https://canvas.echomusic.fun/Song/sumankar892-commits-1000232069.mp4"
+    },
+    {
+      "song": "Home",
+      "artist": "Metro Boomin",
+      "url": "https://canvas.echomusic.app/Song/7.m3u8"
+    },
+    {
+      "song": "How Do I Make You Love Me?",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/9.m3u8"
+    },
+    {
       "song": "Hukum - Thalaivar Alappara - Tamil",
       "artist": "Anirudh Ravichander",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000031798.mp4"
+    },
+    {
+      "song": "Hundred",
+      "artist": "Khalid",
+      "url": "https://canvas.echomusic.app/Song/22.m3u8"
+    },
+    {
+      "song": "Hush",
+      "artist": "Lo Key",
+      "url": "https://canvas.echomusic.fun/Album/1.m3u8"
+    },
+    {
+      "song": "I Feel It Coming (feat. Daft Punk)",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/16.mp4"
+    },
+    {
+      "song": "I Gotta Feeling",
+      "artist": "The Black Eyed Peas",
+      "url": "https://canvas.echomusic.app/Song/19.m3u8"
+    },
+    {
+      "song": "I Heard You're Married",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/9.m3u8"
+    },
+    {
+      "song": "I Must Apologise",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/13.m3u8"
+    },
+    {
+      "song": "I Need You to Trust Me",
+      "artist": "Kyle Dixon",
+      "url": "https://canvas.echomusic.fun/Album/katx-dev-1000265947.mp4"
+    },
+    {
+      "song": "I like Presents Too",
+      "artist": "Kyle Dixon",
+      "url": "https://canvas.echomusic.fun/Album/katx-dev-1000265947.mp4"
     },
     {
       "song": "Ilakozhiye (From \"Thalavara\")",
@@ -311,14 +646,59 @@
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000033062.mp4"
     },
     {
+      "song": "Imma Be",
+      "artist": "The Black Eyed Peas",
+      "url": "https://canvas.echomusic.app/Song/19.m3u8"
+    },
+    {
+      "song": "In Your Eyes",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/20.m3u8"
+    },
+    {
       "song": "Inaam",
       "artist": "Jasleen Royal, Badshah & Ansh Chahal",
       "url": "https://canvas.echomusic.fun/Song/sumankar892-commits-1000235423.mp4"
     },
     {
+      "song": "Instant Destiny",
+      "artist": "Tame Impala",
+      "url": "https://canvas.echomusic.app/Song/10.m3u8"
+    },
+    {
+      "song": "Internet baby (interlude)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/14.m3u8"
+    },
+    {
+      "song": "Into the Fire",
+      "artist": "Lo Key",
+      "url": "https://canvas.echomusic.fun/Album/1.m3u8"
+    },
+    {
       "song": "Intro",
       "artist": "Khalid",
       "url": "https://canvas.echomusic.app/Song/22.m3u8"
+    },
+    {
+      "song": "Is It True",
+      "artist": "Tame Impala",
+      "url": "https://canvas.echomusic.app/Song/10.m3u8"
+    },
+    {
+      "song": "Is There Someone Else?",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/9.m3u8"
+    },
+    {
+      "song": "It Might Be Time",
+      "artist": "Tame Impala",
+      "url": "https://canvas.echomusic.app/Song/10.m3u8"
+    },
+    {
+      "song": "Jane!",
+      "artist": "The Long Faces",
+      "url": "https://canvas.echomusic.app/Song/4.mp4"
     },
     {
       "song": "Jawani",
@@ -339,6 +719,11 @@
       "song": "Jolly O Gymkhana",
       "artist": "Thalapathy Vijay, Anirudh Ravichander",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000032632.mp4"
+    },
+    {
+      "song": "Just for Me",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/13.m3u8"
     },
     {
       "song": "Kaahe Mose",
@@ -421,6 +806,16 @@
       "url": "https://canvas.echomusic.fun/Song/mandleshpratapsingh305-prog-27541.mp4"
     },
     {
+      "song": "Last Valentines",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/13.m3u8"
+    },
+    {
+      "song": "Less Than Zero",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/9.m3u8"
+    },
+    {
       "song": "Let The World Burn",
       "artist": "Chris Grey",
       "url": "https://canvas.echomusic.fun/Song/26.m3u8"
@@ -431,9 +826,24 @@
       "url": "https://canvas.echomusic.fun/Song/leithxd-likethat.mp4"
     },
     {
+      "song": "Link Up",
+      "artist": "Metro Boomin",
+      "url": "https://canvas.echomusic.app/Song/7.m3u8"
+    },
+    {
       "song": "Long Distance Love | Coke Studio Bangla",
       "artist": "Ankan Kumar, Modernotaku & Shuvendu Das Shuvo",
       "url": "https://canvas.echomusic.fun/Song/sumankar892-commits-1000235422.mp4"
+    },
+    {
+      "song": "Lost In Yesterday",
+      "artist": "Tame Impala",
+      "url": "https://canvas.echomusic.app/Song/10.m3u8"
+    },
+    {
+      "song": "Love To Lay",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/16.mp4"
     },
     {
       "song": "Loveah Sollitalea (From \"Youth\")",
@@ -501,6 +911,11 @@
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000032876.mp4"
     },
     {
+      "song": "Mare",
+      "artist": "The Black Eyed Peas",
+      "url": "https://canvas.echomusic.app/Song/19.m3u8"
+    },
+    {
       "song": "Matta",
       "artist": "Yuvan Shankar Raja",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000031780.mp4"
@@ -511,9 +926,24 @@
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-videoplayback__1_.mp4"
     },
     {
+      "song": "Meet Me Halfway",
+      "artist": "The Black Eyed Peas",
+      "url": "https://canvas.echomusic.app/Song/19.m3u8"
+    },
+    {
+      "song": "Missing You",
+      "artist": "The Black Eyed Peas",
+      "url": "https://canvas.echomusic.app/Song/19.m3u8"
+    },
+    {
       "song": "Monica",
       "artist": "Sublahshini",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000031655.mp4"
+    },
+    {
+      "song": "Mosquito",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/14.m3u8"
     },
     {
       "song": "Mulakaat",
@@ -529,6 +959,11 @@
       "song": "Mutta Kalakki",
       "artist": "G. V. Prakash",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000031645.mp4"
+    },
+    {
+      "song": "My Bad",
+      "artist": "Khalid",
+      "url": "https://canvas.echomusic.app/Song/22.m3u8"
     },
     {
       "song": "Naa Ready (From \"Leo\")",
@@ -551,6 +986,11 @@
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000032925.mp4"
     },
     {
+      "song": "Nas Morales",
+      "artist": "Metro Boomin",
+      "url": "https://canvas.echomusic.app/Song/7.m3u8"
+    },
+    {
       "song": "Nee Singam Dhan",
       "artist": "A.R. Rahman",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000032636.mp4"
@@ -561,9 +1001,34 @@
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000033268.mp4"
     },
     {
+      "song": "Never Ending Story",
+      "artist": "Gaten Matarazzo and Gabriella Pizzolo",
+      "url": "https://canvas.echomusic.fun/Album/katx-dev-1000265947.mp4"
+    },
+    {
       "song": "Never Ever",
       "artist": "Arjan Dhillion",
       "url": "https://canvas.echomusic.fun/Song/wrxich-lv_0_20260624191307.mp4"
+    },
+    {
+      "song": "Nice to Know You (feat. Loukeman & Leod)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/15.m3u8"
+    },
+    {
+      "song": "Nice to Know You (feat. Sega Bodega)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/15.m3u8"
+    },
+    {
+      "song": "Nice to Know You (feat. Sugababes)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/15.m3u8"
+    },
+    {
+      "song": "Nice to meet you (feat. Central Cee)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/14.m3u8"
     },
     {
       "song": "Night Changes",
@@ -571,9 +1036,44 @@
       "url": "https://canvas.echomusic.fun/Song/deepdeyiitgn-610c2c2c-94ab-4e94-93f7-e3f0b4c6246c.cnvs.mp4"
     },
     {
+      "song": "Nineteen",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/13.m3u8"
+    },
+    {
+      "song": "Noises (feat. JT)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/15.m3u8"
+    },
+    {
+      "song": "Noises (feat. Mochakk)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/15.m3u8"
+    },
+    {
+      "song": "Nonviolent Communication",
+      "artist": "Metro Boomin",
+      "url": "https://canvas.echomusic.app/Song/7.m3u8"
+    },
+    {
       "song": "Noor Ho Tum",
       "artist": "Wajahat Hasan",
       "url": "https://canvas.echomusic.fun/Song/deepdeyiitgn-canvasdownloader_wajahat_hasan_1781881553060.mp4"
+    },
+    {
+      "song": "Nothing Without You",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/16.mp4"
+    },
+    {
+      "song": "Noticed I Cried",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/13.m3u8"
+    },
+    {
+      "song": "Now Generation",
+      "artist": "The Black Eyed Peas",
+      "url": "https://canvas.echomusic.app/Song/19.m3u8"
     },
     {
       "song": "Ocean Eyes",
@@ -596,9 +1096,19 @@
       "url": "https://canvas.echomusic.app/Song/5.mp4"
     },
     {
+      "song": "On Track",
+      "artist": "Tame Impala",
+      "url": "https://canvas.echomusic.app/Song/10.m3u8"
+    },
+    {
       "song": "One Call Away",
       "artist": "Arjan Dhillon, Jazzy B, & Mxrci",
       "url": "https://canvas.echomusic.fun/Song/wrxich-lv_0_20260624145952.mp4"
+    },
+    {
+      "song": "One More Hour",
+      "artist": "Tame Impala",
+      "url": "https://canvas.echomusic.app/Song/10.m3u8"
     },
     {
       "song": "One More Year",
@@ -611,9 +1121,24 @@
       "url": "https://canvas.echomusic.app/Song/11.m3u8"
     },
     {
+      "song": "One Tribe",
+      "artist": "The Black Eyed Peas",
+      "url": "https://canvas.echomusic.app/Song/19.m3u8"
+    },
+    {
       "song": "Oorum Blood",
       "artist": "Paal Dabba",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000031662.mp4"
+    },
+    {
+      "song": "Ophelia",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/14.m3u8"
+    },
+    {
+      "song": "Ordinary Life",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/16.mp4"
     },
     {
       "song": "Ordinary Person (From \"Leo\")",
@@ -629,6 +1154,21 @@
       "song": "Othaiyadi Pathayila",
       "artist": "Dhibu Ninan Thomas, Anirudh Ravichander, Arunraja Kamaraj",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000031813.mp4"
+    },
+    {
+      "song": "Out Of My Head",
+      "artist": "The Black Eyed Peas",
+      "url": "https://canvas.echomusic.app/Song/19.m3u8"
+    },
+    {
+      "song": "Out of Time",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/9.m3u8"
+    },
+    {
+      "song": "Outta My Head (feat. John Mayer)",
+      "artist": "Khalid",
+      "url": "https://canvas.echomusic.app/Song/22.m3u8"
     },
     {
       "song": "Pagal Banawe",
@@ -651,6 +1191,26 @@
       "url": "https://canvas.echomusic.fun/Song/12palpal.mp4"
     },
     {
+      "song": "Paradise",
+      "artist": "Khalid",
+      "url": "https://canvas.echomusic.app/Song/22.m3u8"
+    },
+    {
+      "song": "Party All The Time",
+      "artist": "The Black Eyed Peas",
+      "url": "https://canvas.echomusic.app/Song/19.m3u8"
+    },
+    {
+      "song": "Party Monster",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/16.mp4"
+    },
+    {
+      "song": "Passion",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/13.m3u8"
+    },
+    {
       "song": "Pathikichu (From \"Vidaamuyarchi\")",
       "artist": "Yogi Sekar & Amogh Balaji",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000033319.mp4"
@@ -659,6 +1219,16 @@
       "song": "Pavazha malli",
       "artist": "Sai Abhyankkar",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000031420.mp4"
+    },
+    {
+      "song": "Phantom Regret by Jim",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/9.m3u8"
+    },
+    {
+      "song": "Posthumous Forgiveness",
+      "artist": "Tame Impala",
+      "url": "https://canvas.echomusic.app/Song/10.m3u8"
     },
     {
       "song": "Pottala Muttaye (From \"Thalaivan Thalaivii\")",
@@ -706,12 +1276,62 @@
       "url": "https://canvas.echomusic.fun/Song/sumankar892-commits-1000232973.mp4"
     },
     {
+      "song": "Rats",
+      "artist": "Kyle Dixon",
+      "url": "https://canvas.echomusic.fun/Album/katx-dev-1000265947.mp4"
+    },
+    {
+      "song": "Reason",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/13.m3u8"
+    },
+    {
       "song": "Rebel Saab",
       "artist": "Thaman S, Sanjith Hegde, Blaaze, Ramajogayya Sastry",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000031807.mp4"
     },
     {
+      "song": "Reminder",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/16.mp4"
+    },
+    {
+      "song": "Repeat After Me (Interlude)",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/20.m3u8"
+    },
+    {
+      "song": "Right Back",
+      "artist": "Khalid",
+      "url": "https://canvas.echomusic.app/Song/22.m3u8"
+    },
+    {
+      "song": "Ring-A-Ling",
+      "artist": "The Black Eyed Peas",
+      "url": "https://canvas.echomusic.app/Song/19.m3u8"
+    },
+    {
       "song": "Risa",
+      "artist": "Nateki",
+      "url": "https://canvas.echomusic.fun/Album/3.m3u8"
+    },
+    {
+      "song": "Risa(Slowed)",
+      "artist": "Nateki",
+      "url": "https://canvas.echomusic.fun/Album/3.m3u8"
+    },
+    {
+      "song": "Risa(Sped Up)",
+      "artist": "Nateki",
+      "url": "https://canvas.echomusic.fun/Album/3.m3u8"
+    },
+    {
+      "song": "Risa(Super Slowed)",
+      "artist": "Nateki",
+      "url": "https://canvas.echomusic.fun/Album/3.m3u8"
+    },
+    {
+      "song": "Risa(Ultra Slowed)",
       "artist": "Nateki",
       "url": "https://canvas.echomusic.fun/Album/3.m3u8"
     },
@@ -721,9 +1341,44 @@
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000033891.mp4"
     },
     {
+      "song": "Rock That Body",
+      "artist": "The Black Eyed Peas",
+      "url": "https://canvas.echomusic.app/Song/19.m3u8"
+    },
+    {
+      "song": "Rockin To The Beat",
+      "artist": "The Black Eyed Peas",
+      "url": "https://canvas.echomusic.app/Song/19.m3u8"
+    },
+    {
+      "song": "Rockin'",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/16.mp4"
+    },
+    {
+      "song": "Romeo (feat. KILIMANJARO)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/15.m3u8"
+    },
+    {
+      "song": "Romeo (feat. Rachel Chinouriri)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/15.m3u8"
+    },
+    {
+      "song": "Romeo (feat. Ravyn Lenae)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/15.m3u8"
+    },
+    {
       "song": "Rubaroo",
       "artist": "Ceciroleo, Chinmayi, Bhaskarabhatla",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000031942.mp4"
+    },
+    {
+      "song": "Sacrifice",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/9.m3u8"
     },
     {
       "song": "Safar",
@@ -736,9 +1391,24 @@
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000031806.mp4"
     },
     {
+      "song": "Saiyaara (Movie: Saiyaara)",
+      "artist": "Faheem Abdullah, Arslan Nizami & Irshad Kamil",
+      "url": "https://canvas.echomusic.fun/Song/deepdeyiitgn-canvasdownloader_tanishk_bagchi_1782373368940.mp4"
+    },
+    {
       "song": "Salambala (Trending Version)",
       "artist": "Anirudh Ravichander, Sai Abhyankkar & Super Subu",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000032924.mp4"
+    },
+    {
+      "song": "Saturday Nights",
+      "artist": "Khalid",
+      "url": "https://canvas.echomusic.app/Song/22.m3u8"
+    },
+    {
+      "song": "Save Your Tears",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/20.m3u8"
     },
     {
       "song": "Sawadeeka",
@@ -746,9 +1416,49 @@
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000031800.mp4"
     },
     {
+      "song": "Scared To Live",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/20.m3u8"
+    },
+    {
+      "song": "Scoops Troop",
+      "artist": "Kyle Dixon",
+      "url": "https://canvas.echomusic.fun/Album/katx-dev-1000265947.mp4"
+    },
+    {
+      "song": "Secrets",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/16.mp4"
+    },
+    {
+      "song": "Self",
+      "artist": "Khalid",
+      "url": "https://canvas.echomusic.app/Song/22.m3u8"
+    },
+    {
+      "song": "Self Love",
+      "artist": "Metro Boomin",
+      "url": "https://canvas.echomusic.app/Song/7.m3u8"
+    },
+    {
+      "song": "Seven Feet",
+      "artist": "Kyle Dixon",
+      "url": "https://canvas.echomusic.fun/Album/katx-dev-1000265947.mp4"
+    },
+    {
       "song": "Shaabaashiyaan (feat. Akshay Kumar, Kirti Kulhari, Nithya Menen & Sharman Joshi)",
       "artist": "Shilpa Rao, Anand Bhaskar & Abhijeet Srivastava",
       "url": "https://canvas.echomusic.fun/Song/deepdeyiitgn-canvasdownloader_shilpa_rao_1781881483538.mp4"
+    },
+    {
+      "song": "Showdown",
+      "artist": "The Black Eyed Peas",
+      "url": "https://canvas.echomusic.app/Song/19.m3u8"
+    },
+    {
+      "song": "Sidewalks (feat. Kendrick Lamar)",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/16.mp4"
     },
     {
       "song": "Singari (From \"Dude\")",
@@ -759,6 +1469,16 @@
       "song": "Sithira Puthiri (From \"Think Indie\")",
       "artist": "Sai Abhyankkar",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000033280.mp4"
+    },
+    {
+      "song": "Six Feet Under",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/16.mp4"
+    },
+    {
+      "song": "Snowchild",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/20.m3u8"
     },
     {
       "song": "So Baby",
@@ -786,9 +1506,64 @@
       "url": "https://canvas.echomusic.app/Song/16.mp4"
     },
     {
+      "song": "Starcourt",
+      "artist": "Kyle Dixon",
+      "url": "https://canvas.echomusic.fun/Album/katx-dev-1000265947.mp4"
+    },
+    {
+      "song": "Stargirl Interlude (feat. Lana Del Rey)",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/16.mp4"
+    },
+    {
+      "song": "Starry Eyes",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/9.m3u8"
+    },
+    {
+      "song": "Stars (feat. DJ Caio Prince & Adame DJ)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/15.m3u8"
+    },
+    {
+      "song": "Stars (feat. Yves)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/15.m3u8"
+    },
+    {
+      "song": "Stateside (feat. Bladee)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/15.m3u8"
+    },
+    {
+      "song": "Stateside (feat. Groove Armada)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/15.m3u8"
+    },
+    {
+      "song": "Stateside (feat. Kylie Minogue)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/15.m3u8"
+    },
+    {
+      "song": "Stateside (feat. Zara Larsson)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/15.m3u8"
+    },
+    {
       "song": "Sun saawariya",
       "artist": "Accha insaan , Arthava music , yaani karnawat",
       "url": "https://canvas.echomusic.fun/Song/sumankar892-commits-1000229882.mp4"
+    },
+    {
+      "song": "Take My Breath",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/9.m3u8"
+    },
+    {
+      "song": "Talk (feat. Disclosure)",
+      "artist": "Khalid",
+      "url": "https://canvas.echomusic.app/Song/22.m3u8"
     },
     {
       "song": "Thalapathy Kacheri",
@@ -796,14 +1571,44 @@
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000033920.mp4"
     },
     {
+      "song": "The Breakup Song",
+      "artist": "Pritam",
+      "url": "https://canvas.echomusic.app/Song/18.mp4"
+    },
+    {
       "song": "The Chosen Souls",
       "artist": "Lo Key",
       "url": "https://canvas.echomusic.fun/Album/1.m3u8"
     },
     {
+      "song": "The Devils Knock",
+      "artist": "Lo Key",
+      "url": "https://canvas.echomusic.fun/Album/1.m3u8"
+    },
+    {
+      "song": "The First I love You",
+      "artist": "Kyle Dixon",
+      "url": "https://canvas.echomusic.fun/Album/katx-dev-1000265947.mp4"
+    },
+    {
       "song": "The Machine",
       "artist": "Reed Wonder",
       "url": "https://canvas.echomusic.fun/Song/14-themachine.mp4"
+    },
+    {
+      "song": "The Silver Cat Feeds",
+      "artist": "Kyle Dixon",
+      "url": "https://canvas.echomusic.fun/Album/katx-dev-1000265947.mp4"
+    },
+    {
+      "song": "The aisle",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/14.m3u8"
+    },
+    {
+      "song": "The ceiling is Beautiful",
+      "artist": "Kyle Dixon",
+      "url": "https://canvas.echomusic.fun/Album/katx-dev-1000265947.mp4"
     },
     {
       "song": "The last letter",
@@ -821,6 +1626,46 @@
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000033001.mp4"
     },
     {
+      "song": "Tomorrow's Dust",
+      "artist": "Tame Impala",
+      "url": "https://canvas.echomusic.app/Song/10.m3u8"
+    },
+    {
+      "song": "Tonight (feat. Basement Jaxx)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/15.m3u8"
+    },
+    {
+      "song": "Tonight (feat. JADE)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/15.m3u8"
+    },
+    {
+      "song": "Tonight (feat. Joe Goddard)",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/15.m3u8"
+    },
+    {
+      "song": "Too Late",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/20.m3u8"
+    },
+    {
+      "song": "True Colors",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/16.mp4"
+    },
+    {
+      "song": "True romance",
+      "artist": "PinkPantheress",
+      "url": "https://canvas.echomusic.app/Song/14.m3u8"
+    },
+    {
+      "song": "Twenty One",
+      "artist": "Khalid",
+      "url": "https://canvas.echomusic.app/Song/22.m3u8"
+    },
+    {
       "song": "Two Two Two",
       "artist": "Anirudh Ravichander",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000032635.mp4"
@@ -834,6 +1679,11 @@
       "song": "Under The Influence",
       "artist": "Chris Brown",
       "url": "https://canvas.echomusic.fun/Song/29.m3u8"
+    },
+    {
+      "song": "Until I Bleed Out",
+      "artist": "The Weeknd",
+      "url": "https://canvas.echomusic.app/Song/20.m3u8"
     },
     {
       "song": "Urugi Urugi",
@@ -866,6 +1716,16 @@
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000032983.mp4"
     },
     {
+      "song": "What Did You Do To Him?",
+      "artist": "Kyle Dixon",
+      "url": "https://canvas.echomusic.fun/Album/katx-dev-1000265947.mp4"
+    },
+    {
+      "song": "William",
+      "artist": "Kyle Dixon",
+      "url": "https://canvas.echomusic.fun/Album/katx-dev-1000265947.mp4"
+    },
+    {
       "song": "Yedi (From \"Nilavuku En Mel Ennadi Kobam\")",
       "artist": "G. V. Prakash, Vivek, Dhanush, Jonita Gandhi",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000031835.mp4"
@@ -874,6 +1734,11 @@
       "song": "Yendi Vittu Pona (From \"Dragon\")",
       "artist": "Leon James, Silambarasan TR & Ko Sesha",
       "url": "https://canvas.echomusic.fun/Song/chandanavikas-1000033469.mp4"
+    },
+    {
+      "song": "You're a Fighter",
+      "artist": "Kyle Dixon",
+      "url": "https://canvas.echomusic.fun/Album/katx-dev-1000265947.mp4"
     },
     {
       "song": "Zahir",
